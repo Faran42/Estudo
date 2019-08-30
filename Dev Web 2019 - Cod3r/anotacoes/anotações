@@ -1,0 +1,4 @@
+forEach() // para cada elemento percorrido em um array, uma função callback é chamada 
+não entendi array.reduce
+o node faz caching ao se criar e requerer instancias
+para resolver isso crie funções factory, ver aula sobre node - instancias
