@@ -10,7 +10,13 @@ atraves do comando req.body*/
 
 app.post('/usuarios', (req, resp) => {
     console.log(req.body)
-    resp.send('<h1>Parabéns<h1>')
+    resp.send('<h1>Parabéns. Usuário incluido!</h1></br><a href=\"\http://localhost:8080/index.html\"\>Voltar</a>')
+})
+
+app.post('/usuarios/:id', (req, resp) => {
+    console.log(req.params.id)
+    console.log(req.body)
+    resp.send('<h1>Parabéns. Usuário Alterado!</h1></br><a href=\"\http://localhost:8080/index.html\"\>Voltar</a>')
 })
 
 app.listen(3003)
