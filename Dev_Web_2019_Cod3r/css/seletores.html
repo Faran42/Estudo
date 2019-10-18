@@ -6,7 +6,56 @@
     <title>CSS Selectors</title>
     <link rel="stylesheet" href="css/tag.css">
     <style>
-        /* ... */
+        /* * {            
+        }*/
+
+        /*.tag{
+        }*/
+
+        /*#aprovados {
+        }*/
+
+        /*#aninhado {
+        }*/
+
+        /*#aninhado section {
+        }*/
+
+        /*p + ul {
+        }*/
+
+        /* p ~ ol {            
+        }*/
+        
+        /*[feira] {
+        }*/
+
+        /*[feira = casa] {           
+        }*/
+        
+        /*[feira ~= escritorio] {            
+        }*/
+
+        /* [feira *=sa] {            
+        } */
+
+        /*span:nth-child(1) {
+        }*/
+
+        /*span:nth-child(odd) {
+        }*/
+
+        /* section > :nth-child(odd) label {            
+        } */
+
+        section > span:nth-of-type(2)  {
+            color: #ff0;
+            background-color: #f77;
+        }
+
+
+
+
     </style>
 </head>
 
@@ -29,7 +78,7 @@
             </ol>
             <div id='aninhado' class='tag'>
                 <div class="tag">
-                    <section class='tag'>
+                    <section class='tag nolabel'>
                         <span class='tag'>1</span>
                         <p class='tag'>2</p>
                         <span class='tag'>3</span>
