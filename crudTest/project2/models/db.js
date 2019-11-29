@@ -6,3 +6,4 @@ mongoose.connect('mongodb://localhost:27017/SimoDB', {useNewUrlParser: true}, (e
 });
 
 require('./user.model');
+require('./paciente.model');
