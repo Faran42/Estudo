@@ -22,10 +22,19 @@ router.post('/', (req, res) => {
 
 function insertRecord( req, res){
     var paciente = new Paciente();
-    paciente.fullName = req.body.fullName;
-    paciente.email = req.body.email;
-    paciente.mobile = req.body.mobile;
-    paciente.city = req.body.city;
+    paciente.nome = req.body.nome;
+    paciente.sobrenome = req.body.sobrenome;
+    paciente.dataNascimento = req.body.dataNascimento;
+    paciente.sexo = req.body.sexo;
+    paciente.cartaoSus = req.body.cartaoSus;
+    paciente.endereco = req.body.endereco;
+    paciente.numero = req.body.numero;
+    paciente.complemento = req.body.complemento;
+    paciente.bairro = req.body.bairro;
+    paciente.cidade = req.body.cidade;
+    paciente.estado = req.body.estado;
+    paciente.cep = req.body.cep;
+    paciente.telefone = req.body.telefone;
     paciente.save((err, doc) => {
         if(!err)
             res.redirect('paciente/list')
@@ -33,7 +42,7 @@ function insertRecord( req, res){
             if(err.name == 'ValidationError'){
                 handleValidationError(err, req.body);
                 res.render('paciente/addOrEdit.hbs',{
-                    viewTitle : "Insira um novo usuário",
+                    viewTitle : "Insira um novo paciente",
                     paciente : req.body
                 });
             }
@@ -64,7 +73,7 @@ function updateRecord(req, res){
     });
 };
 
-router.get('/listpaciente', (req, res) => {
+router.get('/list', (req, res) => {
     // res.json('from list');
     Paciente.find((err, docs) => {
         if(!err){
@@ -81,12 +90,48 @@ router.get('/listpaciente', (req, res) => {
 function handleValidationError(err, body){   
     for(field in err.errors){
         switch(err.errors[field].path) {
-            case 'fullName':
-                body['fullNameError'] = err.errors[field].message;
+            case 'nome':
+                body['nomeError'] = err.errors[field].message;
+                break;
+            case 'sobrenome':
+                body['sobrenomeError'] = err.errors[field].message;
+                break;
+            case 'dataNascimento':
+                body['dataNascimentoError'] = err.errors[field].message;
+                break;
+            case 'sexo':
+                body['sexoError'] = err.errors[field].message;
+                break;
+            case 'cartaoSus':
+                body['cartaoSusError'] = err.errors[field].message;
+                break;
+            case 'endereco':
+                body['enderecoError'] = err.errors[field].message;
+                break;
+            case 'numero':
+                body['complementoError'] = err.errors[field].message;
+                break;
+            case 'complemento':
+                body['emailError'] = err.errors[field].message;
+                break;
+            case 'bairro':
+                body['bairroError'] = err.errors[field].message;
+                break;
+            case 'cidade':
+                body['cidadeError'] = err.errors[field].message;
+                break;
+            case 'estado':
+                body['estadoError'] = err.errors[field].message;
+                break;
+            case 'cep':
+                body['cepError'] = err.errors[field].message;
                 break;
             case 'email':
                 body['emailError'] = err.errors[field].message;
                 break;
+            case 'telefone':
+                body['telefoneError'] = err.errors[field].message;
+                break;            
             default:
                 break;
         }
@@ -105,9 +150,10 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/delete/:id', (req, res) => {
-    Paciente.findByIdAndRemove(req.params.id, (err, docs) => {
+    // Paciente.findByIdAndRemove(req.params.id, (err, docs) => {
+    Paciente.findOneAndDelete(req.params.id, (err, docs) => {
         if(!err){
-            res.redirect('/paciente/list');
+            res.redirect('paciente/list');
         }
         else{
             console.log('Error in user delete: ' + err);

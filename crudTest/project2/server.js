@@ -22,4 +22,10 @@ app.listen(3000, function(){
 })
 
 app.use('/user', userController);
-// app.use('/paciente', pacienteController);
+app.use('/paciente', pacienteController);
+
+app.get('/quest', (req, res) => {
+    res.render('questionario/questionario.hbs',{
+        viewTitle : "Questionário" 
+    });
+});
