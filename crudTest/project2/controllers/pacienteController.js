@@ -11,10 +11,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    if(req.body._id ==''){
+    if(req.body._id ===''){
+        
         insertRecord(req, res);
-    }        
+    }   
+
     else{
+        console.log('update');
         updateRecord(req, res);
     }
        
@@ -54,16 +57,20 @@ function insertRecord( req, res){
 }
 
 function updateRecord(req, res){
-    Paciente.findOneAndUpdate({_id: req.body._id}, req.body, {new: true}, (err, doc) => {
-        if(!err){
+    Paciente.findOneAndUpdate({_id: req.body._id}, req.body, {new: true}, (err, doc) => {    
+        if(!err){    
             res.redirect('paciente/list');
         }
         else{
             if(err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
                 res.render("paciente/addOrEdit", {
+                    
                     viewTitle: 'Atualizar Paciente',
-                    User: req.body
+                    
+                    
+                    paciente: req.body
+                    
                 });
             }
             else{
@@ -140,20 +147,21 @@ function handleValidationError(err, body){
 
 router.get('/:id', (req, res) => {
     Paciente.findById(req.params.id, (err, doc) => {
+        console.log({doc})
         if(!err){
             res.render("paciente/addorEdit.hbs", {
                 viewTitle: "Atualizar Paciente",
-                user: doc
+                paciente: doc
             });
         }
     });
 });
 
 router.get('/delete/:id', (req, res) => {
-    // Paciente.findByIdAndRemove(req.params.id, (err, docs) => {
-    Paciente.findOneAndDelete(req.params.id, (err, docs) => {
+    Paciente.findByIdAndRemove(req.params.id, (err, docs) => {
+    // Paciente.findOneAndDelete(req.params.id, (err, docs) => {
         if(!err){
-            res.redirect('paciente/list');
+            res.redirect('/paciente/list');
         }
         else{
             console.log('Error in user delete: ' + err);
