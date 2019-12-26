@@ -20,7 +20,9 @@ app.set('views engine', 'hbs');
 app.listen(3000, function(){
     console.log('Listen to Port 3000')
 })
-
+app.use('/', (req, res) => {
+    res.write("<h1>aaaaaa</h1>")//CRIAR UMA PÁGINA INICIAL
+})
 app.use('/user', userController);
 app.use('/paciente', pacienteController);
 
