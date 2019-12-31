@@ -16,12 +16,10 @@
         <div class="modal-body">
             <div>
                 <label>Nome do paciente:</label>
-                <select>
-                    <option>122222222222222222222222222222222222222</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
+                <input id="pacienteInput" type="text" name="buscaNome" placeholder="Digite o nome aqui" value=''>
+                <ol id="buscaPaciente">
+                    <li></li>
+                </ol>
             </div>
             <label>Exame:</label>
             <select>
@@ -29,7 +27,8 @@
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
-            </select>    
+            </select>
+            <label>Data:</label>    
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -38,3 +37,21 @@
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+
+
+        <script>
+          
+            $('#pacienteInput').on('input',function(e){
+                axios
+                .get("http://sam:3000/index/paciente/" + $(this).val())
+                .then(response => {
+                    //popular lista
+                    console.log(response.data);
+                });
+            });
+       
+
+        </script>

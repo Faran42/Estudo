@@ -6,7 +6,9 @@ const exphbs = require('express-handlebars');
 const bodyparser = require('body-parser');
 
 const userController = require('./controllers/userController');
+const exameController = require('./controllers/exameController');
 const pacienteController = require('./controllers/pacienteController');
+const indexController = require('./controllers/indexController');
 
 const app = express()
 app.use(bodyparser.urlencoded({
@@ -26,10 +28,8 @@ app.get('/', (req, res) => {
     })
 })
 app.use('/user', userController);
+app.use('/exame', exameController);
 app.use('/paciente', pacienteController);
+app.use('/index', indexController);
 
-app.get('/quest', (req, res) => {
-    res.render('questionario/questionario.hbs',{
-        viewTitle : "Questionário" 
-    });
-});
+

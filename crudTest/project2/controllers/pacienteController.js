@@ -82,7 +82,7 @@ function updateRecord(req, res){
 
 router.get('/list', (req, res) => {
     // res.json('from list');
-    Paciente.find((err, docs) => {
+    Paciente.find((err, docs) => {        
         if(!err){
             res.render("paciente/list.hbs", {
                 list: docs

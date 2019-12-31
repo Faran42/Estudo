@@ -8,8 +8,8 @@ mongoose.connect('mongodb://localhost:27017/SimoDB', {useUnifiedTopology: true, 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
+
 
 require('./user.model');
 require('./paciente.model');
-require('./paciente_exame.model');
+require('./exame.model');
